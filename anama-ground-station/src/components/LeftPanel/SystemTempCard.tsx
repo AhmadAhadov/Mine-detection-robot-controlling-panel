@@ -23,7 +23,7 @@ function TempBar({ label, icon, value, critThreshold }: {
       <div className="h-1.5 bg-military-black rounded overflow-hidden border border-military-border">
         <div className={`h-full rounded transition-all duration-500 ${barColor}`} style={{ width: `${pct}%` }} />
       </div>
-      {isCrit && <p className="text-alert-red text-xs mt-0.5 animate-pulse">⚠ CRITICAL TEMPERATURE</p>}
+      {isCrit && <p className="text-alert-red text-xs mt-0.5 animate-pulse">⚠ KRİTİK İSTİLİK</p>}
     </div>
   );
 }
@@ -35,11 +35,11 @@ export default function SystemTempCard({ cpuTempC, motorDriverTempC }: Props) {
     <div className="panel-module">
       <div className="panel-title">
         <Thermometer size={14} />
-        SYSTEM TEMPERATURE
+        SİSTEM İSTİLİYİ
       </div>
       <div className="mt-2">
         <TempBar label="JETSON CPU" icon={<Cpu size={11} />} value={cpuTempC!} critThreshold={85} />
-        <TempBar label="MOTOR DRIVER" icon={<Cpu size={11} />} value={motorDriverTempC!} critThreshold={80} />
+        <TempBar label="MOTOR SÜRÜCÜSÜ" icon={<Cpu size={11} />} value={motorDriverTempC!} critThreshold={80} />
       </div>
     </div>
   );

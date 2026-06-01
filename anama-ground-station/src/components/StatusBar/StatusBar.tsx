@@ -25,8 +25,8 @@ export default function StatusBar({ isOnline, mode, dataMode, setDataMode, isMut
       {/* Logo */}
       <div className="flex items-center gap-2">
         <Shield size={18} className="text-neon-green" />
-        <span className="text-neon-green font-bold tracking-widest text-xs">ANAMA</span>
-        <span className="text-gray-500 text-xs">Ground Station v1.0</span>
+        <span className="text-neon-green font-bold tracking-widest text-xs">MDEF OS</span>
+        <span className="text-gray-500 text-xs">Yer Stansiyası v1.0</span>
       </div>
 
       {/* Center status */}
@@ -34,7 +34,7 @@ export default function StatusBar({ isOnline, mode, dataMode, setDataMode, isMut
         {/* E-Stop indicator */}
         {isEStop && (
           <span className="text-alert-red font-bold text-xs animate-pulse tracking-widest">
-            ⬛ EMERGENCY STOP ACTIVE
+            ⬛ TƏCİLİ DAYANMA AKTİVDİR
           </span>
         )}
 
@@ -43,12 +43,12 @@ export default function StatusBar({ isOnline, mode, dataMode, setDataMode, isMut
           {isOnline ? (
             <>
               <Wifi size={14} className="text-neon-green" />
-              <span className="text-neon-green text-xs font-bold">ROBOT ONLINE</span>
+              <span className="text-neon-green text-xs font-bold">ROBOT ONLAYNdır</span>
             </>
           ) : (
             <>
               <WifiOff size={14} className="text-alert-red" />
-              <span className="text-alert-red text-xs font-bold animate-pulse">OFFLINE</span>
+              <span className="text-alert-red text-xs font-bold animate-pulse">OFFLAYNdır</span>
             </>
           )}
         </div>
@@ -60,7 +60,7 @@ export default function StatusBar({ isOnline, mode, dataMode, setDataMode, isMut
               ? 'border-neon-green text-neon-green'
               : 'border-alert-orange text-alert-orange'
           }`}>
-            {mode}
+            {mode === 'AUTONOMOUS' ? 'AVTONOM' : 'ƏLLƏ İDARƏ'}
           </span>
         )}
       </div>

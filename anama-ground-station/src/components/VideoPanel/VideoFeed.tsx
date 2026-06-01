@@ -14,7 +14,7 @@ export default function VideoFeed({ streamUrl, isSimulation }: Props) {
       <div className="panel-title justify-between">
         <div className="flex items-center gap-1.5">
           <Camera size={14} />
-          FPV CAMERA FEED
+          FPV KAMERA GÖRÜNTÜsü
         </div>
         <div className="flex items-center gap-1.5">
           {/* Live badge */}
@@ -92,9 +92,9 @@ function SimulationPlaceholder({ isThermal }: { isThermal: boolean }) {
       <div className="text-center z-10">
         <Camera size={32} className={`mx-auto mb-2 opacity-30 ${isThermal ? 'text-alert-orange' : 'text-neon-green'}`} />
         <p className={`text-xs font-mono opacity-60 ${isThermal ? 'text-alert-orange' : 'text-neon-green'}`}>
-          {isThermal ? 'LWIR THERMAL SIMULATION' : 'RGB CAMERA SIMULATION'}
+          {isThermal ? 'LWIR İSTİLİK SİMULYASİYASI' : 'RGB KAMERA SİMULYASİYASI'}
         </p>
-        <p className="text-gray-600 text-xs mt-1 font-mono">No stream in simulation mode</p>
+        <p className="text-gray-600 text-xs mt-1 font-mono">Simulyasiya rejimində axın yoxdur</p>
       </div>
 
       {/* Corner brackets */}
@@ -116,7 +116,7 @@ function NoStreamPlaceholder() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-600">
       <Camera size={28} className="mb-2 opacity-30" />
-      <p className="text-xs font-mono">NO STREAM</p>
+      <p className="text-xs font-mono">AXIN YOXDUR</p>
     </div>
   );
 }

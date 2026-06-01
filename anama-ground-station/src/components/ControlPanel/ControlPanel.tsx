@@ -24,12 +24,12 @@ export default function ControlPanel({ isEStop, onEStop, onReset, detections }: 
     <div className="panel-module flex flex-col h-full gap-3">
       <div className="panel-title">
         <Gamepad2 size={14} />
-        CONTROL PANEL
+        İDARƏETMƏ PANELİ
       </div>
 
       {/* Mode toggle */}
       <div className="flex flex-col items-center gap-1.5">
-        <span className="text-gray-500 text-xs font-mono">OPERATION MODE</span>
+        <span className="text-gray-500 text-xs font-mono">İŞ REJİMİ</span>
         <div className="flex rounded border border-military-border overflow-hidden">
           <button
             onClick={() => setRobotMode('AUTONOMOUS')}
@@ -40,7 +40,7 @@ export default function ControlPanel({ isEStop, onEStop, onReset, detections }: 
                 : 'bg-military-black text-gray-500 hover:text-gray-300'
             } ${isEStop ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
           >
-            <Bot size={13} /> AUTONOMOUS
+            <Bot size={13} /> AVTONOM
           </button>
           <div className="w-px bg-military-border" />
           <button
@@ -52,11 +52,11 @@ export default function ControlPanel({ isEStop, onEStop, onReset, detections }: 
                 : 'bg-military-black text-gray-500 hover:text-gray-300'
             } ${isEStop ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
           >
-            <Gamepad2 size={13} /> MANUAL
+            <Gamepad2 size={13} /> ƏLLƏ İDARƏ
           </button>
         </div>
         {isManual && (
-          <span className="text-alert-orange text-xs font-mono animate-pulse">⚠ MANUAL CONTROL ACTIVE</span>
+          <span className="text-alert-orange text-xs font-mono animate-pulse">⚠ ƏLLƏ İDARƏ AKTİVDİR</span>
         )}
       </div>
 
@@ -72,7 +72,7 @@ export default function ControlPanel({ isEStop, onEStop, onReset, detections }: 
 
       {/* Export buttons */}
       <div className="border-t border-military-border pt-2">
-        <p className="text-gray-500 text-xs font-mono text-center mb-2">EXPORT REPORT</p>
+        <p className="text-gray-500 text-xs font-mono text-center mb-2">HESABAT İXRACI</p>
         <div className="flex gap-2">
           <button
             onClick={() => exportPDF(detections)}

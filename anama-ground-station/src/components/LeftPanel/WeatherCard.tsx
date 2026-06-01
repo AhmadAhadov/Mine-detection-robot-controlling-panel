@@ -12,31 +12,31 @@ export default function WeatherCard({ weather }: Props) {
     <div className="panel-module">
       <div className="panel-title">
         <Wind size={14} />
-        WEATHER CONDITIONS
+        HAVA ŞƏRAİTİ
       </div>
       <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
         <div className="text-center">
           <Thermometer size={12} className="text-alert-orange mx-auto mb-0.5" />
           <div className="text-neon-green font-bold tabular-nums">{weather.temperatureC}°C</div>
-          <div className="text-gray-500">Temp</div>
+          <div className="text-gray-500">İstlik</div>
         </div>
         <div className="text-center">
           <Droplets size={12} className={`mx-auto mb-0.5 ${highHumidity ? 'text-alert-red' : 'text-blue-400'}`} />
           <div className={`font-bold tabular-nums ${highHumidity ? 'text-alert-red' : 'text-neon-green'}`}>
             {weather.humidity}%
           </div>
-          <div className="text-gray-500">Humidity</div>
+          <div className="text-gray-500">Rütubət</div>
         </div>
         <div className="text-center">
           <Wind size={12} className="text-gray-400 mx-auto mb-0.5" />
-          <div className="text-neon-green font-bold tabular-nums">{weather.windSpeedKmh} km/h</div>
-          <div className="text-gray-500">Wind</div>
+          <div className="text-neon-green font-bold tabular-nums">{weather.windSpeedKmh} km/s</div>
+          <div className="text-gray-500">Külək</div>
         </div>
       </div>
       {highHumidity && (
         <div className="mt-2 flex items-center gap-1.5 text-xs text-alert-orange bg-orange-950 bg-opacity-40 rounded p-1.5 border border-alert-orange border-opacity-40">
           <AlertTriangle size={11} />
-          <span>High humidity — sensor accuracy may be reduced</span>
+          <span>Yüksək rütubət — sensor dəqiqliyi azala bilər</span>
         </div>
       )}
       <div className="mt-1 text-center text-gray-500 text-xs">{weather.condition}</div>

@@ -52,15 +52,15 @@ export default function IMUCard({ imu }: Props) {
     <div className={`panel-module ${imu.tipOverRisk ? 'border-alert-red' : ''}`}>
       <div className="panel-title">
         <Navigation size={14} />
-        IMU / ATTITUDE
+        IMU / ORIYENTASIYA
         {imu.tipOverRisk && (
-          <span className="ml-auto text-alert-red text-xs font-bold animate-pulse">⚠ TIP-OVER RISK</span>
+          <span className="ml-auto text-alert-red text-xs font-bold animate-pulse">⚠ AŞILMA RİSKİ</span>
         )}
       </div>
 
       {imu.tipOverRisk && (
         <div className="mt-1 bg-alert-red bg-opacity-20 border border-alert-red rounded p-1.5 text-center animate-pulse">
-          <span className="text-alert-red font-bold text-xs tracking-widest">⚠ TIP-OVER WARNING ⚠</span>
+          <span className="text-alert-red font-bold text-xs tracking-widest">⚠ AŞILMA XƏBƏRDARLICI ⚠</span>
         </div>
       )}
 
@@ -68,9 +68,9 @@ export default function IMUCard({ imu }: Props) {
         <ArtificialHorizon roll={imu.roll} pitch={imu.pitch} />
 
         <div className="flex-1 space-y-1 text-xs font-mono">
-          <IMURow label="ROLL" value={imu.roll} warn={Math.abs(imu.roll) > 15} />
-          <IMURow label="PITCH" value={imu.pitch} warn={Math.abs(imu.pitch) > 15} />
-          <IMURow label="YAW" value={imu.yaw} />
+          <IMURow label="YALPA" value={imu.roll} warn={Math.abs(imu.roll) > 15} />
+          <IMURow label="TRIM" value={imu.pitch} warn={Math.abs(imu.pitch) > 15} />
+          <IMURow label="KURs" value={imu.yaw} />
         </div>
       </div>
     </div>

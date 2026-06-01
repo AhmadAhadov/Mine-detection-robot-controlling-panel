@@ -118,12 +118,12 @@ export default function MapView({ telemetry, detections }: Props) {
           .addTo(map)
           .bindPopup(`
             <div style="font-family:monospace;font-size:12px;background:#0f150f;color:#39ff14;padding:8px;border:1px solid #1a2a1a;border-radius:4px;min-width:180px;">
-              <strong style="color:${det.type === 'MINE' ? '#ff2020' : '#ff8c00'}">${det.type} #${String(det.id).padStart(3, '0')}</strong><br/>
-              <span style="color:#aaa">Lat:</span> ${det.lat.toFixed(6)}°<br/>
-              <span style="color:#aaa">Lng:</span> ${det.lng.toFixed(6)}°<br/>
-              <span style="color:#aaa">Depth:</span> ${det.depthCm !== null ? det.depthCm + ' cm' : 'N/A'}<br/>
-              <span style="color:#aaa">Confidence:</span> <span style="color:#ffd700">${det.confidence}%</span><br/>
-              <span style="color:#555;font-size:10px">${new Date(det.timestamp).toLocaleTimeString('en-GB')}</span>
+              <strong style="color:${det.type === 'MINE' ? '#ff2020' : '#ff8c00'}">${det.type === 'MINE' ? 'MİNA' : 'METAL'} #${String(det.id).padStart(3, '0')}</strong><br/>
+              <span style="color:#aaa">En:</span> ${det.lat.toFixed(6)}°<br/>
+              <span style="color:#aaa">Uzunluq:</span> ${det.lng.toFixed(6)}°<br/>
+              <span style="color:#aaa">Dərinlik:</span> ${det.depthCm !== null ? det.depthCm + ' sm' : 'Məlum deyil'}<br/>
+              <span style="color:#aaa">Etibarlılıq:</span> <span style="color:#ffd700">${det.confidence}%</span><br/>
+              <span style="color:#555;font-size:10px">${new Date(det.timestamp).toLocaleTimeString('az-AZ')}</span>
             </div>
           `, { maxWidth: 220 });
         existing.set(det.id, marker);

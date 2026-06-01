@@ -24,7 +24,7 @@ export default function EStop({ isEStop, onEStop, onReset }: Props) {
         style={isEStop ? {} : { boxShadow: '0 0 20px #ff2020, 0 0 40px #ff202060' }}
       >
         <OctagonX size={28} className="mx-auto mb-1" />
-        <div className="text-xs leading-tight">EMERGENCY<br/>STOP</div>
+        <div className="text-xs leading-tight">TƏCİLİ<br/>DAYANMA</div>
       </button>
 
       {/* Reset button */}
@@ -41,7 +41,7 @@ export default function EStop({ isEStop, onEStop, onReset }: Props) {
         `}
       >
         <ShieldCheck size={16} className="mx-auto mb-1" />
-        RESET<br/>/ ARM
+        SIFIRLA<br/>/ SİLAHLAN
       </button>
     </div>
   );

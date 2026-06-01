@@ -22,9 +22,9 @@ export default function BatteryCard({ battery }: Props) {
     <div className={`panel-module ${isCritical ? 'border-alert-red animate-pulse' : ''}`}>
       <div className="panel-title">
         <Battery size={14} />
-        BATTERY
+        BATAREYA
         {isCritical && (
-          <span className="ml-auto text-alert-red text-xs font-bold animate-pulse">⚠ CRITICAL</span>
+          <span className="ml-auto text-alert-red text-xs font-bold animate-pulse">⚠ KRİTİK</span>
         )}
       </div>
 
@@ -36,7 +36,7 @@ export default function BatteryCard({ battery }: Props) {
           }`}>
             {percent.toFixed(1)}%
           </span>
-          <span className="text-gray-400 text-xs">{estimatedMinutesLeft} min left</span>
+          <span className="text-gray-400 text-xs">{estimatedMinutesLeft} dəq qalıb</span>
         </div>
         <div className="h-3 bg-military-black rounded overflow-hidden border border-military-border">
           <div
@@ -48,11 +48,11 @@ export default function BatteryCard({ battery }: Props) {
 
       {/* Stats grid */}
       <div className="grid grid-cols-3 gap-2 mt-2">
-        <StatItem icon={<Zap size={11} />} label="VOLT" value={`${voltage.toFixed(1)}V`} />
-        <StatItem icon={<Zap size={11} />} label="CURR" value={`${current.toFixed(1)}A`} />
+        <StatItem icon={<Zap size={11} />} label="GƏRİLİM" value={`${voltage.toFixed(1)}V`} />
+        <StatItem icon={<Zap size={11} />} label="CƏRƏYAN" value={`${current.toFixed(1)}A`} />
         <StatItem
           icon={<Thermometer size={11} />}
-          label="TEMP"
+          label="İSTİLİK"
           value={`${tempC.toFixed(0)}°C`}
           warn={tempC > 45}
         />

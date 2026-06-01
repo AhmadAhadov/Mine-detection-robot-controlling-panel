@@ -16,7 +16,7 @@ export default function SignalCard({ rssiPercent }: Props) {
     <div className="panel-module">
       <div className="panel-title">
         <Radio size={14} />
-        SIGNAL STRENGTH (RSSI)
+        SİQNAL GÜCİ (RSSI)
       </div>
       <div className="mt-2 flex items-center gap-3">
         <span className={`text-xl font-bold tabular-nums ${textColor}`}>
@@ -29,7 +29,7 @@ export default function SignalCard({ rssiPercent }: Props) {
           />
         </div>
         {isWeak && (
-          <span className="text-xs text-alert-red animate-pulse font-bold">WEAK</span>
+          <span className="text-xs text-alert-red animate-pulse font-bold">ZƏİF</span>
         )}
       </div>
     </div>

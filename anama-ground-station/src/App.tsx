@@ -89,7 +89,7 @@ export default function App() {
         >
           <div className="panel-title">
             <span className="w-2 h-2 rounded-full bg-neon-green shadow-neon inline-block" />
-            MINE FIELD MAP — REAL-TIME
+            MİNA SAHƏSI XƏRİTƏSİ — CANLI
             {telemetry && (
               <span className="ml-auto text-gray-500 text-xs tabular-nums">
                 {telemetry.gnss.lat.toFixed(5)}°N {telemetry.gnss.lng.toFixed(5)}°E

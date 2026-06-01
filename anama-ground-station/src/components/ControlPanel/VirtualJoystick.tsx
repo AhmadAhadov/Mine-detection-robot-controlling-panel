@@ -102,7 +102,7 @@ export default function VirtualJoystick({ disabled, onCommand }: Props) {
           style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
         />
       </div>
-      <p className="text-gray-600 text-xs font-mono">W/A/S/D or drag</p>
+      <p className="text-gray-600 text-xs font-mono">W/A/S/D və ya sürüklə</p>
     </div>
   );
 }
