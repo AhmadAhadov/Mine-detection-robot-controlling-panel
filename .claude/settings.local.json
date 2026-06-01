@@ -13,7 +13,10 @@
       "Bash(pkill -f \"vite\")",
       "Bash(npx tailwindcss *)",
       "Bash(npx *)",
-      "Bash(./node_modules/.bin/tailwindcss init *)"
+      "Bash(./node_modules/.bin/tailwindcss init *)",
+      "Bash(curl -s http://localhost:5174)",
+      "Bash(curl -s http://localhost:5175)",
+      "Bash(curl -s http://localhost:5176)"
     ]
   }
 }
