@@ -9,6 +9,7 @@ import BatteryCard from './components/LeftPanel/BatteryCard';
 import SignalCard from './components/LeftPanel/SignalCard';
 import SystemTempCard from './components/LeftPanel/SystemTempCard';
 import IMUCard from './components/LeftPanel/IMUCard';
+import SpeedCard from './components/LeftPanel/SpeedCard';
 import SensorStatusCard from './components/LeftPanel/SensorStatusCard';
 import WeatherCard from './components/LeftPanel/WeatherCard';
 import MapView from './components/MapPanel/MapView';
@@ -77,6 +78,7 @@ export default function App() {
             cpuTempC={telemetry?.system.cpuTempC ?? null}
             motorDriverTempC={telemetry?.system.motorDriverTempC ?? null}
           />
+          <SpeedCard speedKmh={telemetry?.speedKmh ?? null} />
           <IMUCard imu={telemetry?.imu ?? null} />
           <SensorStatusCard sensors={telemetry?.sensors ?? null} gnss={telemetry?.gnss ?? null} />
           <WeatherCard weather={weather} />

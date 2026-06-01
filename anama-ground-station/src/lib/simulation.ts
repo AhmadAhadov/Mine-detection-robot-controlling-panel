@@ -16,6 +16,8 @@ const WAYPOINTS = [
 let waypointIndex = 0;
 let waypointProgress = 0;
 let batteryPercent = 85;
+let lastLat = WAYPOINTS[0].lat;
+let lastLng = WAYPOINTS[0].lng;
 let trajectory: { lat: number; lng: number }[] = [{ ...TRAJECTORY_BASE }];
 let detectionIdCounter = 1;
 let pendingDetection: Detection | null = null;
@@ -30,6 +32,14 @@ function noise(scale = 1) {
   return (Math.random() - 0.5) * 2 * scale;
 }
 
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
 export function generateSimulatedTelemetry(): Telemetry {
   // Advance robot position along waypoints
   waypointProgress += 0.008;
@@ -42,6 +52,12 @@ export function generateSimulatedTelemetry(): Telemetry {
   const nextWp = WAYPOINTS[(waypointIndex + 1) % WAYPOINTS.length];
   const lat = lerp(curWp.lat, nextWp.lat, waypointProgress) + noise(0.00002);
   const lng = lerp(curWp.lng, nextWp.lng, waypointProgress) + noise(0.00002);
+
+  // Speed: distance per tick (250ms) → km/h
+  const distKm = haversineKm(lastLat, lastLng, lat, lng);
+  const speedKmh = Math.max(0, distKm / (0.25 / 3600) + noise(0.05));
+  lastLat = lat;
+  lastLng = lng;
 
   // Add to trajectory (keep last 200 points)
   trajectory.push({ lat, lng });
@@ -61,6 +77,7 @@ export function generateSimulatedTelemetry(): Telemetry {
   return {
     timestamp: Date.now(),
     mode: "AUTONOMOUS",
+    speedKmh: Math.round(speedKmh * 10) / 10,
     battery: {
       percent: batteryPercent,
       voltage: lerp(20.0, 16.5, 1 - batteryPercent / 100),

@@ -8,6 +8,7 @@ export interface Telemetry {
     tempC: number;
     estimatedMinutesLeft: number;
   };
+  speedKmh: number;
   signal: { rssiPercent: number };
   system: { cpuTempC: number; motorDriverTempC: number };
   imu: { roll: number; pitch: number; yaw: number; tipOverRisk: boolean };
