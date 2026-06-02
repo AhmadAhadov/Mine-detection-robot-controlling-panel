@@ -55,7 +55,7 @@ export default function SpeedCard({ speedKmh }: Props) {
         <div className="flex justify-between text-xs font-mono mt-0.5">
           <span className="text-gray-500">VƏZİYYƏT</span>
           <span className={isMoving ? 'text-neon-green' : 'text-gray-500'}>
-            {isMoving ? 'HAREKƏTDƏDİR' : 'DAYANIB'}
+            {isMoving ? 'HƏRƏKƏTDƏDİR' : 'DAYANIB'}
           </span>
         </div>
       </div>

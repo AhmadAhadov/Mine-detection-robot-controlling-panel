@@ -16,7 +16,7 @@ export function exportPDF(detections: Detection[], operator = 'Yer Operatoru') {
   doc.setTextColor(57, 255, 20);
   doc.setFontSize(18);
   doc.setFont('courier', 'bold');
-  doc.text('ANAMA Mina Askarlamasi Hesabati', 14, 16);
+  doc.text('Mina Askarlamasi Hesabati', 14, 16);
   doc.setFontSize(10);
   doc.setTextColor(180, 220, 180);
   doc.text(`Tarix: ${new Date().toLocaleString('az-AZ')}`, 14, 26);
@@ -58,14 +58,14 @@ export function exportPDF(detections: Detection[], operator = 'Yer Operatoru') {
     doc.setFontSize(8);
     doc.setTextColor(120, 120, 120);
     doc.text(
-      'ANAMA Yer Stansiyasi | Məxfi — Mina Aşkarlama Məlumatları',
+      'Yer Stansiyasi | Məxfi — Mina Aşkarlama Məlumatları',
       14,
       doc.internal.pageSize.height - 8
     );
     doc.text(`Səhifə ${i} / ${pageCount}`, 180, doc.internal.pageSize.height - 8);
   }
 
-  doc.save(`ANAMA_Hesabat_${Date.now()}.pdf`);
+  doc.save(`Hesabat_${Date.now()}.pdf`);
 }
 
 export function exportExcel(detections: Detection[]) {
@@ -84,7 +84,7 @@ export function exportExcel(detections: Detection[]) {
   XLSX.utils.book_append_sheet(wb, ws, 'Aşkarlamalar');
 
   const summary = XLSX.utils.aoa_to_sheet([
-    ['ANAMA Mina Aşkarlama Hesabatı'],
+    ['Mina Aşkarlama Hesabatı'],
     ['Yaradılıb', new Date().toLocaleString('az-AZ')],
     [],
     ['Ümumi aşkarlamalar', detections.length],
@@ -93,5 +93,5 @@ export function exportExcel(detections: Detection[]) {
   ]);
   XLSX.utils.book_append_sheet(wb, summary, 'Xülasə');
 
-  XLSX.writeFile(wb, `ANAMA_Hesabat_${Date.now()}.xlsx`);
+  XLSX.writeFile(wb, `Hesabat_${Date.now()}.xlsx`);
 }
