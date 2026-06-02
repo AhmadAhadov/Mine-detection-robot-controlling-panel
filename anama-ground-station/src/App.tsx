@@ -78,6 +78,7 @@ export default function App() {
           <SystemTempCard
             cpuTempC={telemetry?.system.cpuTempC ?? null}
             gpuTempC={telemetry?.system.gpuTempC ?? null}
+            stm32TempC={telemetry?.system.stm32TempC ?? null}
             motorDriverTempC={telemetry?.system.motorDriverTempC ?? null}
             motorTempC={telemetry?.system.motorTempC ?? null}
             enclosureTempC={telemetry?.system.enclosureTempC ?? null}

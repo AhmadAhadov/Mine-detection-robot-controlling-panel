@@ -3,6 +3,7 @@ import { Cpu, Thermometer, Zap, Box } from 'lucide-react';
 interface Props {
   cpuTempC: number | null;
   gpuTempC: number | null;
+  stm32TempC: number | null;
   motorDriverTempC: number | null;
   motorTempC: number | null;
   enclosureTempC: number | null;
@@ -31,7 +32,7 @@ function TempBar({ label, icon, value, critThreshold }: {
   );
 }
 
-export default function SystemTempCard({ cpuTempC, gpuTempC, motorDriverTempC, motorTempC, enclosureTempC }: Props) {
+export default function SystemTempCard({ cpuTempC, gpuTempC, stm32TempC, motorDriverTempC, motorTempC, enclosureTempC }: Props) {
   if (cpuTempC === null) return null;
 
   return (
@@ -43,6 +44,7 @@ export default function SystemTempCard({ cpuTempC, gpuTempC, motorDriverTempC, m
       <div className="mt-2">
         <TempBar label="JETSON CPU" icon={<Cpu size={11} />} value={cpuTempC!} critThreshold={85} />
         <TempBar label="JETSON GPU" icon={<Cpu size={11} />} value={gpuTempC!} critThreshold={85} />
+        <TempBar label="STM32" icon={<Cpu size={11} />} value={stm32TempC!} critThreshold={85} />
         <TempBar label="MÜHƏRRİK" icon={<Zap size={11} />} value={motorTempC!} critThreshold={90} />
         <TempBar label="MOTOR SÜRÜCÜSÜ" icon={<Cpu size={11} />} value={motorDriverTempC!} critThreshold={80} />
         <TempBar label="KORPUS DAXİLİ" icon={<Box size={11} />} value={enclosureTempC!} critThreshold={60} />

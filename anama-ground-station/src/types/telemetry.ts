@@ -10,7 +10,7 @@ export interface Telemetry {
   };
   speedKmh: number;
   signal: { rssiPercent: number };
-  system: { cpuTempC: number; gpuTempC: number; motorDriverTempC: number; motorTempC: number; enclosureTempC: number };
+  system: { cpuTempC: number; gpuTempC: number; stm32TempC: number; motorDriverTempC: number; motorTempC: number; enclosureTempC: number };
   imu: { roll: number; pitch: number; yaw: number; tipOverRisk: boolean };
   gnss: {
     lat: number;
