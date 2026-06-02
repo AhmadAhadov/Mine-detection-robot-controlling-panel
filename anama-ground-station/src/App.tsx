@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { Map, Camera } from 'lucide-react';
 import './index.css';
 
 import { useTelemetry } from './hooks/useTelemetry';
@@ -17,9 +18,12 @@ import DetectionList from './components/MapPanel/DetectionList';
 import VideoFeed from './components/VideoPanel/VideoFeed';
 import ControlPanel from './components/ControlPanel/ControlPanel';
 
+type ActiveTab = 'map' | 'camera';
+
 export default function App() {
   const [isMuted, setIsMuted] = useState(false);
   const [isEStop, setIsEStop] = useState(false);
+  const [activeTab, setActiveTab] = useState<ActiveTab>('map');
 
   const { telemetry, detections, weather, isOnline, mode, setMode, clearDetections } =
     useTelemetry(isMuted);
@@ -61,17 +65,14 @@ export default function App() {
 
       {/* MAIN GRID */}
       <div className="flex-1 grid overflow-hidden" style={{
-        gridTemplateColumns: '260px 1fr 220px',
-        gridTemplateRows: '1fr 1fr',
+        gridTemplateColumns: '260px 1fr',
+        gridTemplateRows: '1fr',
         gap: '6px',
         padding: '6px',
       }}>
 
-        {/* ── LEFT PANEL (spans 2 rows) ── */}
-        <div
-          className="row-span-2 flex flex-col gap-2 overflow-y-auto pr-0.5"
-          style={{ gridColumn: '1', gridRow: '1 / span 2' }}
-        >
+        {/* ── LEFT PANEL ── */}
+        <div className="flex flex-col gap-2 overflow-y-auto pr-0.5">
           <BatteryCard battery={telemetry?.battery ?? null} />
           <SignalCard rssiPercent={telemetry?.signal.rssiPercent ?? null} />
           <SystemTempCard
@@ -84,52 +85,82 @@ export default function App() {
           <WeatherCard weather={weather} />
         </div>
 
-        {/* ── MAP PANEL (top center) ── */}
-        <div
-          className="panel-module overflow-hidden flex flex-col"
-          style={{ gridColumn: '2', gridRow: '1' }}
-        >
-          <div className="panel-title">
-            <span className="w-2 h-2 rounded-full bg-neon-green shadow-neon inline-block" />
-            MİNA SAHƏSI XƏRİTƏSİ — CANLI
-            {telemetry && (
-              <span className="ml-auto text-gray-500 text-xs tabular-nums">
-                {telemetry.gnss.lat.toFixed(5)}°N {telemetry.gnss.lng.toFixed(5)}°E
-              </span>
+        {/* ── RIGHT AREA (tab bar + content) ── */}
+        <div className="flex flex-col gap-1.5 overflow-hidden">
+
+          {/* Tab bar */}
+          <div className="flex items-center gap-1 bg-military-dark border border-military-border rounded px-1.5 py-1 self-start">
+            <button
+              onClick={() => setActiveTab('map')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs font-mono font-bold transition-colors ${
+                activeTab === 'map'
+                  ? 'bg-neon-green-dim text-neon-green border border-neon-green border-opacity-40'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              <Map size={13} />
+              XƏRİTƏ
+            </button>
+            <button
+              onClick={() => setActiveTab('camera')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs font-mono font-bold transition-colors ${
+                activeTab === 'camera'
+                  ? 'bg-neon-green-dim text-neon-green border border-neon-green border-opacity-40'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              <Camera size={13} />
+              KAMERA
+            </button>
+          </div>
+
+          {/* Tab content */}
+          <div className="flex-1 grid overflow-hidden" style={{
+            gridTemplateColumns: '1fr 220px',
+            gridTemplateRows: '1fr',
+            gap: '6px',
+          }}>
+
+            {/* Map tab */}
+            {activeTab === 'map' && (
+              <>
+                <div className="panel-module overflow-hidden flex flex-col">
+                  <div className="panel-title">
+                    <span className="w-2 h-2 rounded-full bg-neon-green shadow-neon inline-block" />
+                    MİNA SAHƏSİ XƏRİTƏSİ — CANLI
+                    {telemetry && (
+                      <span className="ml-auto text-gray-500 text-xs tabular-nums">
+                        {telemetry.gnss.lat.toFixed(5)}°N {telemetry.gnss.lng.toFixed(5)}°E
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex-1 mt-1.5 overflow-hidden rounded">
+                    <MapView telemetry={telemetry} detections={detections} />
+                  </div>
+                </div>
+                <div className="overflow-hidden">
+                  <DetectionList detections={detections} onClear={clearDetections} />
+                </div>
+              </>
+            )}
+
+            {/* Camera tab */}
+            {activeTab === 'camera' && (
+              <>
+                <div className="overflow-hidden">
+                  <VideoFeed isSimulation={mode === 'SIMULATION'} />
+                </div>
+                <div className="overflow-hidden">
+                  <ControlPanel
+                    isEStop={isEStop}
+                    onEStop={handleEStop}
+                    onReset={handleReset}
+                    detections={detections}
+                  />
+                </div>
+              </>
             )}
           </div>
-          <div className="flex-1 mt-1.5 overflow-hidden rounded">
-            <MapView telemetry={telemetry} detections={detections} />
-          </div>
-        </div>
-
-        {/* ── DETECTION LIST (top right) ── */}
-        <div
-          className="overflow-hidden"
-          style={{ gridColumn: '3', gridRow: '1' }}
-        >
-          <DetectionList detections={detections} onClear={clearDetections} />
-        </div>
-
-        {/* ── VIDEO FEED (bottom center) ── */}
-        <div
-          className="overflow-hidden"
-          style={{ gridColumn: '2', gridRow: '2' }}
-        >
-          <VideoFeed isSimulation={mode === 'SIMULATION'} />
-        </div>
-
-        {/* ── CONTROL PANEL (bottom right) ── */}
-        <div
-          className="overflow-hidden"
-          style={{ gridColumn: '3', gridRow: '2' }}
-        >
-          <ControlPanel
-            isEStop={isEStop}
-            onEStop={handleEStop}
-            onReset={handleReset}
-            detections={detections}
-          />
         </div>
       </div>
     </div>

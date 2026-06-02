@@ -24,9 +24,9 @@ export default function IMUCard({ imu }: Props) {
       )}
 
       <div className="mt-2 space-y-1 text-xs font-mono">
-        <IMURow label="YALPA" value={imu.roll} warn={Math.abs(imu.roll) > 15} />
-        <IMURow label="TRİM" value={imu.pitch} warn={Math.abs(imu.pitch) > 15} />
-        <IMURow label="KURS" value={imu.yaw} />
+        <IMURow label="ROLL" value={imu.roll} warn={Math.abs(imu.roll) > 15} />
+        <IMURow label="PITCH" value={imu.pitch} warn={Math.abs(imu.pitch) > 15} />
+        <IMURow label="YAW" value={imu.yaw} />
       </div>
     </div>
   );

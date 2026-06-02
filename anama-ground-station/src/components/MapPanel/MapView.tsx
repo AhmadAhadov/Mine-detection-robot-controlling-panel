@@ -57,7 +57,7 @@ export default function MapView({ telemetry, detections }: Props) {
     if (!containerRef.current || mapRef.current) return;
 
     const map = L.map(containerRef.current, {
-      center: [40.4093, 49.8671],
+      center: [39.6012, 47.1534],
       zoom: 17,
       zoomControl: true,
       attributionControl: false,
@@ -77,6 +77,9 @@ export default function MapView({ telemetry, detections }: Props) {
     return () => {
       map.remove();
       mapRef.current = null;
+      robotMarkerRef.current = null;
+      trajectoryRef.current = null;
+      detectionMarkersRef.current.clear();
     };
   }, []);
 

@@ -1,16 +1,16 @@
 import type { Telemetry, Detection } from '../types/telemetry';
 
-// Baku area trajectory waypoints
-const TRAJECTORY_BASE = { lat: 40.4093, lng: 49.8671 };
+// Karabakh demining area — Fuzuli district
+const TRAJECTORY_BASE = { lat: 39.6012, lng: 47.1534 };
 const WAYPOINTS = [
-  { lat: 40.4093, lng: 49.8671 },
-  { lat: 40.4098, lng: 49.8682 },
-  { lat: 40.4105, lng: 49.8690 },
-  { lat: 40.4110, lng: 49.8678 },
-  { lat: 40.4118, lng: 49.8665 },
-  { lat: 40.4112, lng: 49.8655 },
-  { lat: 40.4103, lng: 49.8648 },
-  { lat: 40.4093, lng: 49.8660 },
+  { lat: 39.6012, lng: 47.1534 },
+  { lat: 39.6021, lng: 47.1548 },
+  { lat: 39.6034, lng: 47.1561 },
+  { lat: 39.6045, lng: 47.1549 },
+  { lat: 39.6058, lng: 47.1535 },
+  { lat: 39.6050, lng: 47.1519 },
+  { lat: 39.6037, lng: 47.1508 },
+  { lat: 39.6022, lng: 47.1521 },
 ];
 
 let waypointIndex = 0;
