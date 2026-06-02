@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Gamepad2, Bot, FileDown, FileSpreadsheet } from 'lucide-react';
 import EStop from './EStop';
 import VirtualJoystick from './VirtualJoystick';
@@ -16,9 +16,9 @@ export default function ControlPanel({ isEStop, onEStop, onReset, detections }: 
   const [robotMode, setRobotMode] = useState<'AUTONOMOUS' | 'MANUAL'>('AUTONOMOUS');
   const isManual = robotMode === 'MANUAL' && !isEStop;
 
-  const handleCommand = (_cmd: { x: number; y: number }) => {
+  const handleCommand = useCallback((_cmd: { x: number; y: number }) => {
     // In LIVE mode this would send over WebSocket
-  };
+  }, []);
 
   return (
     <div className="panel-module flex flex-col h-full gap-3">

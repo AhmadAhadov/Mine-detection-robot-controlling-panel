@@ -11,6 +11,7 @@ export default function VirtualJoystick({ disabled, onCommand }: Props) {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const dragging = useRef(false);
   const baseRef = useRef<HTMLDivElement>(null);
+  const keysRef = useRef(new Set<string>());
 
   const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 
@@ -43,13 +44,23 @@ export default function VirtualJoystick({ disabled, onCommand }: Props) {
 
   // Keyboard WASD support
   useEffect(() => {
-    if (disabled) return;
-    const keys = new Set<string>();
+    if (disabled) {
+      keysRef.current.clear();
+      setPos({ x: 0, y: 0 });
+      return;
+    }
+
+    const keys = keysRef.current;
 
     const update = () => {
       const x = (keys.has('d') || keys.has('arrowright') ? 1 : 0) - (keys.has('a') || keys.has('arrowleft') ? 1 : 0);
       const y = (keys.has('w') || keys.has('arrowup') ? 1 : 0) - (keys.has('s') || keys.has('arrowdown') ? 1 : 0);
-      const mag = Math.sqrt(x * x + y * y) || 1;
+      if (x === 0 && y === 0) {
+        setPos({ x: 0, y: 0 });
+        onCommand({ x: 0, y: 0 });
+        return;
+      }
+      const mag = Math.sqrt(x * x + y * y);
       const nx = x / mag;
       const ny = y / mag;
       setPos({ x: nx * RADIUS * 0.7, y: -ny * RADIUS * 0.7 });
@@ -57,8 +68,12 @@ export default function VirtualJoystick({ disabled, onCommand }: Props) {
     };
 
     const onKeyDown = (e: KeyboardEvent) => {
-      keys.add(e.key.toLowerCase());
-      update();
+      const k = e.key.toLowerCase();
+      if (['w', 'a', 's', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k)) {
+        e.preventDefault();
+        keys.add(k);
+        update();
+      }
     };
     const onKeyUp = (e: KeyboardEvent) => {
       keys.delete(e.key.toLowerCase());
