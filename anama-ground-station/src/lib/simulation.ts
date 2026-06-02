@@ -90,7 +90,10 @@ export function generateSimulatedTelemetry(): Telemetry {
     },
     system: {
       cpuTempC: 62 + noise(4),
+      gpuTempC: 68 + noise(4),
       motorDriverTempC: 55 + noise(3),
+      motorTempC: 70 + noise(5),
+      enclosureTempC: 42 + noise(2),
     },
     imu: {
       roll,

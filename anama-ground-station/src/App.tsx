@@ -77,7 +77,10 @@ export default function App() {
           <SignalCard rssiPercent={telemetry?.signal.rssiPercent ?? null} />
           <SystemTempCard
             cpuTempC={telemetry?.system.cpuTempC ?? null}
+            gpuTempC={telemetry?.system.gpuTempC ?? null}
             motorDriverTempC={telemetry?.system.motorDriverTempC ?? null}
+            motorTempC={telemetry?.system.motorTempC ?? null}
+            enclosureTempC={telemetry?.system.enclosureTempC ?? null}
           />
           <SpeedCard speedKmh={telemetry?.speedKmh ?? null} />
           <IMUCard imu={telemetry?.imu ?? null} />

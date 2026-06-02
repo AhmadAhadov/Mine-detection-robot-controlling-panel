@@ -43,12 +43,12 @@ export default function StatusBar({ isOnline, mode, dataMode, setDataMode, isMut
           {isOnline ? (
             <>
               <Wifi size={14} className="text-neon-green" />
-              <span className="text-neon-green text-xs font-bold">ROBOT ONLAYNdır</span>
+              <span className="text-neon-green text-xs font-bold">ROBOT ONLAYNDIR</span>
             </>
           ) : (
             <>
               <WifiOff size={14} className="text-alert-red" />
-              <span className="text-alert-red text-xs font-bold animate-pulse">OFFLAYNdır</span>
+              <span className="text-alert-red text-xs font-bold animate-pulse">OFFLAYNDIR</span>
             </>
           )}
         </div>
