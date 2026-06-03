@@ -53,11 +53,10 @@ export function generateSimulatedTelemetry(): Telemetry {
   const lat = lerp(curWp.lat, nextWp.lat, waypointProgress) + noise(0.00002);
   const lng = lerp(curWp.lng, nextWp.lng, waypointProgress) + noise(0.00002);
 
-  // Speed: distance per tick (250ms) → km/h
-  const distKm = haversineKm(lastLat, lastLng, lat, lng);
-  const speedKmh = Math.max(0, distKm / (0.25 / 3600) + noise(0.05));
-  lastLat = lat;
-  lastLng = lng;
+  // Speed: smooth oscillation 0–4 km/h
+  const speedKmh = Math.min(4, Math.max(0,
+    2 + Math.sin(imuPhase * 0.3) * 1.9 + noise(0.15)
+  ));
 
   // Add to trajectory (keep last 200 points)
   trajectory.push({ lat, lng });

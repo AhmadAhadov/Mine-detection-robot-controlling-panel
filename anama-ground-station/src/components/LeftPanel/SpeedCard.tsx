@@ -4,7 +4,7 @@ interface Props {
   speedKmh: number | null;
 }
 
-const MAX_SPEED = 5; // robot max speed km/h
+const MAX_SPEED = 4; // robot max speed km/h
 
 export default function SpeedCard({ speedKmh }: Props) {
   if (speedKmh === null) return null;
@@ -48,7 +48,6 @@ export default function SpeedCard({ speedKmh }: Props) {
           <span>2</span>
           <span>3</span>
           <span>4</span>
-          <span>5</span>
         </div>
 
         {/* Status */}
